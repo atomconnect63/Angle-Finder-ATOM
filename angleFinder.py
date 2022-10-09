@@ -17,22 +17,22 @@ def mousePoints(event,x,y,flags,params):
  
 def gradient(pt1,pt2):
     return (pt2[1]-pt1[1])/(pt2[0]-pt1[0])
- 
-def getAngle(pointsList):
-    pt1, pt2, pt3 = pointsList[-3:]
-    m1 = gradient(pt1,pt2)
-    m2 = gradient(pt1,pt3)
-    angR = math.atan((m2-m1)/(1+(m2*m1)))
-    angD = round(math.degrees(angR))
- 
-    cv2.putText(img,str(angD),(pt1[0]-40,pt1[1]-20),cv2.FONT_HERSHEY_COMPLEX,
-                1.5,(0,0,255),2)
+
+
  
 while True:
  
  
     if len(pointsList) % 3 == 0 and len(pointsList) !=0:
-        getAngle(pointsList)
+        
+        pt1, pt2, pt3 = pointsList[-3:]
+        m1 = gradient(pt1,pt2)
+        m2 = gradient(pt1,pt3)
+        angR = math.atan((m2-m1)/(1+(m2*m1)))
+        angD = round(math.degrees(angR))
+ 
+    cv2.putText(img,str(angD),(pt1[0]-40,pt1[1]-20),cv2.FONT_HERSHEY_COMPLEX,
+                1.5,(0,0,255),2)
  
     else:
         cv2.imshow('Image',img)
